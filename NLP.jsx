@@ -1927,26 +1927,37 @@ export default function NLPStudyGuide() {
                 ::-webkit-scrollbar { width: 6px; }
                 ::-webkit-scrollbar-track { background: #0a0a14; }
                 ::-webkit-scrollbar-thumb { background: #2a2a4a; border-radius: 3px; }
+                @media (max-width: 768px) {
+                    .site-header {
+                        position: relative !important;
+                        padding: 16px 14px 14px !important;
+                    }
+                    .site-header h1 { font-size: 22px !important; }
+                    .site-header .college-tag { font-size: 8px !important; letter-spacing: 3px !important; margin-bottom: 4px !important; }
+                    .site-header .subtitle { font-size: 11px !important; margin-top: 4px !important; }
+                    .filter-row { margin-top: 10px !important; gap: 6px !important; }
+                    .filter-row button { padding: 4px 12px !important; font-size: 11px !important; }
+                }
             `}</style>
 
-            {/* ── Sticky Header ── */}
-            <div style={{
+            {/* ── Header ── */}
+            <div className="site-header" style={{
                 background: "linear-gradient(135deg, rgba(26,26,46,0.92) 0%, rgba(22,33,62,0.92) 50%, rgba(15,52,96,0.92) 100%)",
                 backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)",
                 padding: "28px 24px 22px", borderBottom: "1px solid #2a2a4a",
                 position: "sticky", top: 0, zIndex: 100
             }}>
                 <div style={{ maxWidth: 920, margin: "0 auto" }}>
-                    <div style={{ fontSize: 10, color: "#e94560", letterSpacing: 5, textTransform: "uppercase", marginBottom: 8, fontWeight: 500 }}>
+                    <div className="college-tag" style={{ fontSize: 10, color: "#e94560", letterSpacing: 5, textTransform: "uppercase", marginBottom: 8, fontWeight: 500 }}>
                         PILLAI COLLEGE OF ENGINEERING · NLP · SEM VI · 2025-26
                     </div>
                     <h1 style={{ margin: 0, fontSize: 28, color: "#fff", fontWeight: 700, letterSpacing: 0.5 }}>
                         NLP Exam Priority Study Guide
                     </h1>
-                    <div style={{ color: "#7878a0", marginTop: 6, fontSize: 13, fontWeight: 400 }}>
+                    <div className="subtitle" style={{ color: "#7878a0", marginTop: 6, fontSize: 13, fontWeight: 400 }}>
                         {topics.length} topics across M1–M6 ranked by exam frequency • Based on PYQ analysis
                     </div>
-                    <div style={{ marginTop: 16, display: "flex", gap: 8, flexWrap: "wrap" }}>
+                    <div className="filter-row" style={{ marginTop: 16, display: "flex", gap: 8, flexWrap: "wrap" }}>
                         {["all", "M1", "M2", "M3", "M4", "M5", "M6"].map(m => {
                             const btnColor = m === "all" ? "#e94560" : getColor(m);
                             const isActive = filter === m;
@@ -1964,7 +1975,7 @@ export default function NLPStudyGuide() {
                                         boxShadow: isActive ? `0 0 12px ${btnColor}44` : "none"
                                     }}
                                 >
-                                    {m === "all" ? "ALL MODULES" : `Module ${m.slice(1)}`}
+                                    {m === "all" ? "ALL" : m}
                                 </button>
                             );
                         })}
