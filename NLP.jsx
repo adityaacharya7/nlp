@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const MODULE_COLORS = {
     M1: "#00bcd4",
@@ -1901,6 +1901,15 @@ export default function NLPStudyGuide() {
     const getColor = (mod) => MODULE_COLORS[mod] || "#888";
     const filtered = filter === "all" ? topics : topics.filter(t => t.module === filter);
     const activeFilterColor = filter === "all" ? "#e94560" : getColor(filter);
+    const selectedRef = useRef(null);
+
+    useEffect(() => {
+        if (selected !== null && selectedRef.current) {
+            setTimeout(() => {
+                selectedRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+            }, 50);
+        }
+    }, [selected]);
 
     return (
         <div style={{ fontFamily: "'Inter', sans-serif", background: "#0a0a14", minHeight: "100vh", color: "#e8e8f0", padding: "0" }}>
@@ -1973,7 +1982,10 @@ export default function NLPStudyGuide() {
                         const isHighFreq = topic.freq >= 7;
 
                         return (
-                            <div key={topic.rank}>
+                            <div key={topic.rank}
+                                ref={isSelected ? selectedRef : null}
+                                style={{ scrollMarginTop: 140 }}
+                            >
                                 <div
                                     onClick={() => setSelected(isSelected ? null : topic.rank)}
                                     onMouseEnter={() => setHovered(topic.rank)}
