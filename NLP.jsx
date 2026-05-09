@@ -1310,20 +1310,115 @@ Limitation: Sensitive to dictionary quality; fails with ambiguous contexts`
     },
     {
         rank: 21, module: "M6", freq: 9, title: "Text Summarization",
-        subtitle: "Extractive vs. Abstractive",
+        subtitle: "Extractive vs Abstractive — Methods, Algorithms, Applications",
         color: "#28a745", badge: "📝 2024-25 TREND",
         content: [
             {
-                heading: "Extractive vs Abstractive",
-                body: `Extractive = select and combine EXISTING sentences from source text.
-→ No new words; existing sentences pulled out.
+                heading: "Definition & Need for Summarization",
+                body: `Summarization means to reduce the size of the document without changing its meaning.
+Text summarization is the process of creating a short, coherent, and fluent summary of a
+longer text document, involving outlining of the text's major points.
 
-Abstractive = GENERATE new sentences capturing the essence.
-→ Like how humans summarize — paraphrase, shorten, synthesize.`
+Automatic text summarization is the task of producing a concise and fluent summary
+while preserving key information content and overall meaning.
+
+A good summary should cover the most vital information of the original document, while
+being coherent, non-redundant, and grammatically readable.
+
+Need for Summarization:
+• News Summarization for Indian Languages
+• E-Learning and Educational Content Summarization
+• Market Research and Business Intelligence
+• Social Media Summarization and Sentiment Analysis
+• Legal and Government Document Summarization
+• Healthcare and Medical Text Summarization`
             },
             {
-                heading: "Extractive vs Abstractive Comparison",
-                body: `Feature          | Extractive              | Abstractive
+                heading: "A. Extractive Summarization",
+                body: `Involves selecting and combining sentences from the source text to create a summary.
+The extraction is made according to the defined metric without making any changes to the texts.
+Sentences are pulled directly from the original text based on importance scores.
+
+Detailed Process: Extraction-Based Summarization
+• Pulls keyphrases from the source document and combines them
+• Based on frequency method: store important words and their frequencies in a dictionary
+• Sentences containing high-frequency words are stored in the final summary
+• Words in the summary confirm they are part of the given text
+
+Example:
+Source Text: "Joseph and Mary rode on a tesla to attend the annual event in New york.
+In the city, Mary got job in Google. Mary was assigned as ML developer."
+
+Extractive Summary: "Joseph and Mary rode on a tesla to attend the annual event in
+New york. Mary was assigned as ML developer."
+
+Limitations:
+• Lack of creativity
+• Redundancy and Repetition
+• Coherence and Flow issues
+• Handling new or unseen information
+• Difficulty with Noisy or Irrelevant Sentences
+• Dependency on Sentence-Level Units
+• Lack of Abstraction`
+            },
+            {
+                heading: "B. Abstractive Summarization",
+                body: `Involves generating a concise and coherent summary by understanding the content and
+context and producing new sentences that capture the essence of the original text.
+Creates new phrases and sentences that relay the most useful information—like humans do.
+Performs better than extraction as it paraphrases and shortens parts of the source document.
+
+Detailed Process: Abstraction-Based Summarization
+Algorithms create new phrases and sentences relaying the most useful information.
+Entails paraphrasing and shortening parts of the source document.
+
+Example:
+Source: "Peter and Elizabeth took a taxi to attend the night party in the city.
+While in the party, Elizabeth collapsed and was rushed to the hospital."
+
+Abstractive Summary: "Elizabeth was hospitalized after attending a party with Peter."
+
+Case Study: Abstractive Text Summarization for English Documents
+Approach: Create semantic graph called Rich Semantic Graph (RSG) for the original
+document, reduce the generated semantic graph, and generate final abstractive summary.
+
+Process:
+1. Input: Accepts single document (.txt)
+2. Pre-processing: Tokenization, Filtration, Named Entity Recognition
+3. POS Tagging: Using Stanford Parser/Open NLP Parser
+4. Rich Semantic Graph Generation: Generate graph for entire document
+5. Graph Reduction: Using reduction rules
+6. Output: Summary
+
+Algorithm:
+  Accept the text document as input in English
+  for each sentence in the input document
+    for each word in the sentences
+      do tokenization and filtration
+      part-of-speech tagging (POS)
+      named entity recognition (NER)
+    Generate the graph for each sentence
+  for entire document do
+    Merge all sentence graph to represent whole document
+  Reduce the graph using reduction rules
+  Generate summary`
+            },
+            {
+                heading: "Hindi/Marathi BART Architecture & Applications",
+                body: `Hindi/Marathi - BART Architecture:
+• Uses Base Transformer Model
+• BART Dense layer with adjusted hyper-parameters
+• Probability Beam Search (beam size = 4)
+• Softmax Layer for generating summaries
+
+Applications of Text Summarization:
+• Used as a preliminary stage for information retrieval tasks
+• Simplifies Text categorization
+• Widely used due to information overload problem where information searched is very large
+• Need for meaningful summary to save time
+
+Extractive vs Abstractive Comparison:
+Feature          | Extractive              | Abstractive
 -----------------+-------------------------+---------------------------
 Output           | Existing sentences      | Newly generated text
 Method           | Select & combine        | Paraphrase & synthesize
@@ -1337,125 +1432,476 @@ Accuracy         | High fidelity to source | May introduce errors`
     },
     {
         rank: 22, module: "M6", freq: 9, title: "Sentiment Analysis",
-        subtitle: "Techniques, Challenges",
+        subtitle: "Types, Classification Levels, Techniques, Challenges — Complete Coverage",
         color: "#17a2b8", badge: "📊 STANDARD",
         content: [
             {
-                heading: "Types of Sentiment Analysis",
-                body: `1. Standard SA: Positive / Neutral / Negative
-2. Fine-Grained SA: Very Positive → Very Negative
-3. Emotion Detection: Happiness, Anger, Sadness, Fear
-4. Aspect-Based SA: Sentiment about specific features
-   "Battery life is too short but camera is great."
-   → Battery: Negative, Camera: Positive
-5. Intent Detection: "Instagram keeps closing. Help?" → Request for Assistance
-6. Sarcasm/Irony: "Oh wonderful, traffic is moving slower." → Sarcasm`
+                heading: "Definition & Key Elements",
+                body: `Sentiment Analysis is a natural language processing task that deals with finding
+orientation of opinion in a piece of text with respect to a target.
+It deals with analyzing emotions, feelings, and the attitude of a speaker or writer from a
+given piece of text. Involves capturing user's behavior, likes and dislikes from text.
+
+Goal: Find opinions, identify sentiments expressed, and classify their polarity.
+
+Key Elements:
+• Polarity: Positive or negative opinion
+• Subject: Thing being talked about
+• Opinion Holder: Person/entity expressing the opinion`
             },
             {
-                heading: "Techniques & Challenges",
-                body: `TECHNIQUES:
-1. Rule-Based (Lexicon): Lexicon of +/- words → count → score
-2. Automated (ML): TF-IDF/BoW features → train → predict
-3. Hybrid: Combine both
+                heading: "Types of Sentiment Analysis",
+                body: `1. Standard Sentiment Analysis
+   Binary or ternary classification (Positive / Neutral / Negative)
+   Examples:
+   "I love how Zapier takes different apps and ties them together" → Positive
+   "I still need to further test Zapier to say if its useful" → Neutral
+   "Zapier is sooooo confusing to me" → Negative
 
-CHALLENGES:
-1. Subjectivity: "The laptop is good" (subjective) vs "The laptop is small" (objective)
-2. Irony & Sarcasm: "Magnificent service" said sarcastically
-3. Emojis: 😊 vs 😡 → carry sentiment, hard to process
-4. Idioms: "Not my cup of tea" → negative, literal meaning unrelated
-5. Negation: "I can't not buy another Apple Mac" → double negative = positive
-6. Neutrality: "This laptop is black" → no sentiment`
+2. Fine-grained Sentiment Analysis
+   Granular scale: Very positive, Positive, Neutral, Negative, Very negative
+   Examples:
+   "The older interface was much simpler" → Negative
+   "Awful experience. I would never buy this product again!" → Very Negative
+   "I don't think there is anything I really dislike" → Neutral
+
+3. Emotion Detection
+   Identifies specific emotions (Happiness, Anger, Sadness, Fear)
+   Examples:
+   "Hubspot makes my day a lot easier :)" → Happiness
+   "Your customer service is a nightmare! Totally useless!!" → Anger
+
+4. Aspect-based Sentiment Analysis (ABSA)
+   Focuses on understanding aspects or features discussed in opinion
+   Structure: Entity → Aspect → Opinion
+   Product reviews contain different opinions on different characteristics
+   (Price, UX-UI, Integrations, Mobile Version)
+   Example: "SurveyMonkey has a very clean and user-friendly UI"
+   → Entity: SurveyMonkey, Aspect: UX-UI, Opinion: Positive
+
+5. Intent Detection
+   Finds action behind opinion (what user wants to do)
+   Example: "Very frustrated right now. Instagram keeps closing when I log in. Can you
+   help?" → Request for Assistance
+
+6. Sarcasm and Irony Detection
+   Identifies where expressed sentiment is opposite of literal meaning
+   Example: "Oh, wonderful. The traffic is moving even slower now."
+   Literal: Positive ("wonderful") | Sarcasm: Negative (annoyed by slow traffic)`
+            },
+            {
+                heading: "Classification Levels in Sentiment Analysis",
+                body: `1. Document-level: Classify opinion of whole document as positive or negative
+
+2. Sentence-level: Classify sentiment expressed in each sentence;
+   identify if subjective or objective
+
+3. Aspect-level: Classify sentiment with respect to specific aspects of entities
+   Example: "The battery life of this camera is too short"
+   → Aspect: battery life, Sentiment: Negative`
+            },
+            {
+                heading: "Sentiment Classification Techniques",
+                body: `Categories:
+1. Rule-based: Predefined rules and patterns; uses lexicon (list of positive/negative words)
+2. Automatic systems: ML algorithms learning from past data
+3. Hybrid systems: Combine rule-based and automatic
+
+Approaches:
+A. Lexicon-based Approach:
+   • Dictionary-based Approach
+   • Corpus-based Approach: Statistical, Semantic
+
+B. Machine Learning Approach:
+   • Supervised Learning: Decision Trees, SVM, Neural Networks, Naive Bayes,
+     Bayesian Network, Maximum Entropy
+   • Unsupervised Learning: Pattern inference from unlabeled data`
+            },
+            {
+                heading: "Rule-based Sentiment Analysis Process",
+                body: `Lexicons: Lists of positive and negative words.
+   Positive: "fast", "affordable", "user-friendly"
+   Negative: "slow", "pricey", "complicated"
+
+Preprocessing:
+1. Tokenization: Splitting text into chunks/tokens/words
+2. Lemmatization: Reducing inflected forms to single item (links similar meanings)
+   rocks → rock, corpora → corpus, better → good
+3. Stopword Removal: Remove articles, prepositions, pronouns, conjunctions
+
+Analysis:
+   Count positive and negative words
+   Negation handling: "not easy" counted as opposite
+
+Final Scoring: Scale of -100 to 100
+   100 = Highest positive sentiment
+   0 = Neutral sentiment
+
+Disadvantages:
+   Doesn't consider sentence as whole
+   Misses complex negation and metaphors (e.g., "Love is a battlefield")
+   Requires regular updates`
+            },
+            {
+                heading: "Machine Learning based Sentiment Analysis",
+                body: `Step 1: Feature Extraction
+   Tokenization, lemmatization, stopword removal
+   Vectorization: Transform text to numbers using Bag of Words, Bag-of-ngrams, or Word2vec
+
+Step 2: Training & Prediction
+   Algorithm fed sentiment-labelled training set
+   Model learns associations between features and labels
+
+Step 3: Predictions
+   Model predicts labels for unseen data
+   Eliminates need for pre-defined lexicon
+
+Algorithms: Naive Bayes, Logistic Regression, Linear Regression, SVM
+
+General Architecture of Sentiment Analysis System:
+Pipeline: Data Collection → Pre-Processing → Feature Extraction
+→ Sentiment Classification → Polarity Classification (Positive/Negative/Neutral)
+
+Steps:
+1. Break text into component parts (sentences, phrases, tokens, parts of speech)
+2. Identify sentiment-bearing phrases and components
+3. Assign sentiment score to each phrase (-1 to +1)
+4. Optional: Combine scores for multi-layered analysis`
+            },
+            {
+                heading: "Current Challenges for Sentiment Analysis",
+                body: `1. Subjectivity
+   Texts can be objective or subjective
+   Example: "The laptop is good" (subjective, positive) vs. "The laptop is small" (objective, neutral)
+
+2. Context
+   Context crucial for understanding sentiment
+   Opinion words change polarity based on context
+   Example: "Versatility" = positive in "what did you like" but ambiguous alone
+
+3. Irony & Sarcasm
+   People use positive words to describe negative feelings
+   Example: "May I say how considerate it is of you to enable your passengers such an in-
+   depth and thorough tour of the Caribbean..." (words like "considerate" and "magnificent"
+   positive, but overall sentiment negative)
+
+4. Other Challenges:
+   • Emojis: Interpreting emoji sentiment
+   • Idioms: "Not my cup of tea"
+   • Neutrality: "This laptop is black" (no obvious sentiment)
+   • Negation: "I can't not buy another Apple Mac" (positive sentiment with negative words)
+
+Applications of Sentiment Analysis:
+• Customer feedback analysis
+• Social media monitoring
+• Customer experience management
+• Market research and survey coding
+• Product feeling analysis from reviews
+• Airline experience tracking (monitoring tweets about delays, upgrades, in-flight entertainment)`
             }
         ]
     },
     {
         rank: 23, module: "M6", freq: 7, title: "Question Answering Systems",
-        subtitle: "Types, 3 Stages, Challenges",
+        subtitle: "3 Stages, Types, IR vs QA Comparison, Tools & Models",
         color: "#6f42c1", badge: "💬 STANDARD",
         content: [
             {
-                heading: "3 Stages of QA",
-                body: `1. QUESTION PROCESSING:
-• Question Classification: Who/What/Where/When/How/Why
-  "Who invented the telephone?" → expects a person's name
-• NER: "What is the capital of France?" → "France" identified as location
-• Syntactic Parsing + Semantic Understanding + Query Reformulation
+                heading: "Definition",
+                body: `Question Answering (QA) system designed to answer user queries by providing
+precise, explicit, and concise responses from databases or external knowledge sources.
+Unlike IR systems that return documents/web pages, QA systems deliver specific answers
+to natural language questions.
 
-2. ANSWER RETRIEVAL:
-• IR-based: Match query against document corpus
-• Knowledge Base: Query structured KBs (Wikidata, DBpedia)
-
-3. ANSWER GENERATION:
-• Extractive QA: Extract exact span from retrieved text
-• Abstractive QA: Generate new answer (GPT, BERT)
-• Response Refinement: Ensure clarity`
+Consists of three main parts:
+1. Question Processing
+2. Answer Retrieval
+3. Answer Generation`
             },
             {
-                heading: "Types & IR vs QA Comparison",
-                body: `Types:
-• Closed-domain: Specific topic only (medical QA)
-• Open-domain: Any topic (like Google Search)
-• Factoid: "What is the capital of Japan?" → "Tokyo"
-• Descriptive: Long explanation required
-• Yes/No, List, Complex (How/Why)
+                heading: "1. Question Processing",
+                body: `Key Tasks:
+• Question Classification: Determine question type (who, what, where, when, how, why)
+  Example: "Who was the first president...?" → "Who" question (person identification)
 
-IR vs QA:
-Aspect  | Information Retrieval  | Question Answering
---------+------------------------+-----------------------
-Output  | Ranked list of docs    | Direct specific answer
-Search  | Keyword matching       | Semantic understanding
-Example | List of docs on topic  | "Temperature is 1.1°C"`
+• Named Entity Recognition (NER): Identify proper nouns (people, places, organizations, dates)
+  Example: "What is the capital of France?" → "France" = location entity
+
+• Syntactic Parsing: Analyze grammatical structure (subject, verb, object)
+  Example: "Who invented the telephone?" → Subject ("Who"), Verb ("invented"), Object ("the telephone")
+
+• Semantic Understanding: Interpret meaning beyond words; disambiguate
+  Example: "What is the bank of the river?" → "Bank" = side of river (not financial)
+
+• Query Reformulation: Rephrase complex queries
+  Original: "How many species?" → Reformulated: "How many species of tigers are there?"`
+            },
+            {
+                heading: "2. Answer Retrieval",
+                body: `Approaches:
+• Information Retrieval: Match query against document collection; return ranked list
+• Document Retrieval: Retrieve documents likely to contain answer; extract relevant portions
+• Answer Extraction: Identify specific text fragments/snippets directly answering the question
+  Example: "What is the tallest mountain?" → Extracts "Mount Everest is the tallest mountain..."
+• Knowledge Base Retrieval: Query structured knowledge bases (DBpedia, Wikidata) directly
+  Example: "Who is the president of the US?" → Direct query returns "Joe Biden"`
+            },
+            {
+                heading: "3. Answer Generation",
+                body: `Methods:
+• Extractive Question Answering: Extract answer directly from retrieved text using NLP
+  Example: From "The Eiffel Tower is in Paris, France" → Extracts "Paris"
+
+• Abstractive Question Answering: Generate answer based on understanding;
+  creates natural language responses not in source material
+  Uses transformers (GPT, BERT)
+  Example: "How does photosynthesis work?" → Generates detailed synthesized explanation
+
+• Response Refinement: Refine/rephrase for clarity, coherence, completeness
+• Personalized Answers: Tailor answers based on user preferences`
+            },
+            {
+                heading: "Types of QA Systems",
+                body: `By Domain:
+• Closed-domain QA: Specific subject area (medical, customer support)
+• Open-domain QA: Any topic (general-purpose like Google Search)
+
+By Question Type:
+1. Factoid Question: "What is the capital of Japan?" → "Tokyo"
+2. Descriptive Question: "Describe photosynthesis" → Detailed explanation
+3. Yes/No Question: "Is the Earth round?" → "Yes"
+4. List Question: "What are the colors of the rainbow?" → List of colors
+5. Complex Question (How/Why): "How does gravity work?" → Explanatory answer
+
+By Technology:
+1. IR-Based QA: Retrieves text segments from document collections (e.g., Google Search snippets)
+2. Knowledge-Based QA: Queries structured databases using SQL/SPARQL (e.g., Wikidata, DBpedia)
+3. LLM-Based QA: Uses Large Language Models (GPT, BERT) for contextual understanding (e.g., ChatGPT, IBM Watson)`
+            },
+            {
+                heading: "IR vs QA Comparison & Tools",
+                body: `Comparison: Information Retrieval vs. Question Answering:
+Aspect      | Information Retrieval (IR)        | Question Answering (QA)
+------------+----------------------------------+--------------------------------
+Objective   | Retrieve ranked list of relevant  | Provide specific, concise answer
+            | documents                         |
+Response    | List of documents/snippets        | Direct answer/fact (sentence or phrase)
+Search      | Matches keywords/phrases           | Requires deeper semantic understanding
+Example     | List of documents about "climate   | "The current global temperature
+            | change"                            |  increase is 1.1°C"
+
+QA Tools and Models:
+Category                    | Tools/Models
+----------------------------+-------------------------------------
+Pre-trained QA Models       | BERT, GPT-3, T5, RoBERTa
+Open-domain QA              | Google BERT, SQuAD, Haystack
+Custom QA Pipelines         | Rasa, Haystack
+Machine Reading Comprehension| DrQA, ALBERT, T5
+Semantic Search             | Elasticsearch with Semantic Search, Faiss`
             }
         ]
     },
     {
         rank: 24, module: "M6", freq: 5, title: "Machine Translation",
-        subtitle: "3 Types, Challenges",
+        subtitle: "RBMT, SMT, NMT — Process, Components, Challenges",
         color: "#20c997", badge: "🌐 TRANSLATION",
         content: [
             {
-                heading: "Three Types of MT",
-                body: `1. RULE-BASED MT (RBMT):
-   • Predefined linguistic rules + dictionaries
-   • Three phases: Analysis → Transfer → Generation
+                heading: "Definition & General Process Flow",
+                body: `Machine Translation (MT) is the process of using computer software to automatically
+translate text or speech from one language (source language) into another (target language).
 
-2. STATISTICAL MT (SMT):
-   • Learns from large parallel corpora
-   • Uses probability to find best translation
+MT systems use a variety of algorithms and techniques to convert words and sentences
+while attempting to preserve their meaning. This process can occur with or without human
+assistance, though human input may be required to ensure high-quality translation.
 
-3. NEURAL MT (NMT):
-   • Deep learning (seq2seq + attention)
-   • Most modern (e.g., Google Translate)
+Example:
+Source Text: "The boy is playing in the park."
+Target Language: Marathi
+MT Output: "मुलगा उद्यानात खेळत आहे"
 
-Challenges:
-1. Ambiguity: "bank" → financial or river?
-2. Syntax Differences: English (SVO) vs Japanese/Marathi (SOV)
-3. Cultural Nuances: Idioms don't translate literally
-4. Resource Scarcity: Low-resource languages lack parallel corpora`
+General Process Flow:
+1. Preprocessing (Tokenization, POS Tagging, Named Entity Recognition) →
+2. Text Analysis (Morphological Analysis, Syntax Parsing) →
+3. Translation (Rule-Based / Statistical / Neural Translation) →
+4. Model (Dictionary Lookup / Phrase Matching / Deep Learning) →
+5. Post-Processing (Grammar Check, Word Reordering, Punctuation Fixing) →
+6. Fluency & Fixes (Transliteration - Optional) → Output Sentence (Target Language)`
+            },
+            {
+                heading: "A. Rule-Based Machine Translation (RBMT)",
+                body: `Classical approach relying on predefined linguistic rules and bilingual dictionaries.
+Uses explicit linguistic rules rather than data-driven approaches.
+Based on grammatical, syntactic, and morphological characteristics.
+
+Components of RBMT System:
+1. Analysis Phase (Source Language Processing):
+   • Tokenization: Breaking text into words
+   • Morphological Analysis: Identifying root words and suffixes
+   • Part-of-Speech (POS) Tagging: Identifying nouns, verbs, adjectives, etc.
+   • Syntactic Analysis: Understanding sentence structure
+
+2. Transfer Phase (Language Mapping Rules):
+   • Lexical Transfer: Word-for-word dictionary translation
+   • Syntactic Transfer: Reordering words according to target language rules
+   • Semantic Transfer: Resolving ambiguities and meaning
+
+3. Generation Phase (Target Language Processing):
+   • Morphological Generation: Adding suffixes and inflections
+   • Syntax Correction: Ensuring correct word order
+   • Post-Processing: Refining output for fluency and accuracy
+
+Step-by-Step RBMT Process:
+Step 1: Preprocessing → Break down source sentence, identify parts of speech, word order
+Step 2: Lexical Analysis → Map each word to target language using bilingual dictionary
+Step 3: Syntax Mapping → Apply language-specific rules for grammatical structure conversion
+Step 4: Postprocessing → Refine translated sentence for syntax and idiomatic rules`
+            },
+            {
+                heading: "RBMT Detailed Example: English to Marathi",
+                body: `Input: "The boy is playing in the park"
+
+Tokenization: ["The", "boy", "is", "playing", "in", "the", "park"]
+
+Morphological Analysis:
+  boy → मुलगा (mulga) [Singular noun]
+  playing → खेळत आहे (khelat aahe) [Present Continuous Tense]
+  park → उद्यान (udyaan) [Noun]
+
+Syntactic Analysis:
+  English (SVO): Subject + Verb + Object
+  Marathi (SOV): Subject + Object + Verb
+
+Final Output: "मुलगा उद्यानात खेळत आहे" (Mulga udyaanat khelat aahe)
+
+Another Example:
+English: "The book is on the table" → English (S+V+PP) vs. Japanese (S+PP+V)
+Japanese: "本はテーブルの上にあります" (Hon wa tēburu no ue ni arimasu)`
+            },
+            {
+                heading: "B. Statistical Machine Translation (SMT)",
+                body: `Does not rely on pre-programmed rules; learns translation patterns from large parallel
+text corpora. Uses statistical models to determine most likely translation based on
+language probabilities.
+
+Process:
+1. Corpus Collection: Gather large parallel corpus (sentences in both languages)
+2. Training: Analyze word pairs and phrases to determine probabilities of alignments
+3. Translation: Use learned statistical model to generate translation
+4. Postprocessing: Refine output for fluency`
+            },
+            {
+                heading: "C. Neural Machine Translation (NMT)",
+                body: `Modern approach using deep learning and neural networks.
+Uses sequence-to-sequence architecture to process source and target language data
+through artificial neural networks.
+
+Process:
+1. Data Collection: Large parallel corpus needed
+2. Model Training: Deep learning model trained to map source to target sentences
+3. Translation: System generates translation by predicting most likely sequence of words
+4. Postprocessing: Refine for fluency and grammatical accuracy`
+            },
+            {
+                heading: "Challenges of Machine Translation",
+                body: `1. Ambiguity: Words/phrases with multiple meanings
+   (e.g., "bank" = financial institution or river side)
+
+2. Syntax Differences: Different sentence structures
+   (e.g., English SVO vs. Japanese SOV)
+
+3. Cultural Nuances: Idiomatic expressions that don't translate well between cultures
+
+4. Resource Scarcity: Lack of large parallel corpora for low-resource languages
+
+5. Verb Tense and Gender: Languages with gendered nouns/verbs requiring accurate reflection
+
+6. Accuracy: Struggles with specialized fields or complex language
+
+Online Tools for Machine Translation:
+Tool              | Description
+------------------+----------------------------------------------
+Google Translate  | Widely-used, free, supports 100+ languages using NMT and SMT
+DeepL Translator  | Known for high-quality translations in European languages
+Microsoft Translator | Multi-language support for text, voice, real-time translation
+Amazon Translate  | Cloud-based NMT service integrated with AWS
+Yandex.Translate  | Russian-based service supporting 90+ languages`
             }
         ]
     },
     {
         rank: 25, module: "M6", freq: 5, title: "Information Retrieval",
-        subtitle: "IR vs IE, Vector Space Model",
+        subtitle: "Definition, Components, Variants — Monolingual, CLIR, MLIR",
         color: "#fd7e14", badge: "🔍 COMPARISON",
         content: [
             {
-                heading: "IR Components & Types",
-                body: `IR = obtaining relevant documents from large collection based on user query.
+                heading: "Definition & Key Components",
+                body: `Information Retrieval (IR) is the process of obtaining relevant information from a large
+collection of data based on user queries. The goal is to identify and retrieve items that
+match the user's information needs from databases, document collections, or the internet.
+Documents satisfying user requirements are called relevant documents.
 
-Components: Document Collection, Indexing, Query Processing, Ranking (TF-IDF, BM25), Retrieval
+Example: User searches for "climate change" in academic journal database → System returns
+journal articles, research papers, books containing the term or related topics, ranked by relevance.
 
-Types:
-1. Monolingual IR: Query and documents in SAME language
-2. Cross-Lingual IR (CLIR): Query in one language, documents in another
-3. Multilingual IR (MLIR): Documents in multiple languages
+Key Components of IR Systems:
+1. Document Collection: Repository of all searchable documents (web pages, articles, books)
+2. Indexing: Organizes and stores terms/words from documents; acts as a map for quick location
+3. Query Processing: Analyzes user's query (terms, phrases) to determine likely relevant documents
+4. Ranking: Ranks documents by relevance using algorithms measuring alignment with search terms
+5. Retrieval: Top-ranked documents presented to user as list or search results
+6. User Interface: Search bar/input field facilitating communication
+7. Feedback and Refinement: User feedback marks useful/irrelevant documents to refine future algorithms
 
-IR vs QA:
-Aspect  | Information Retrieval  | Question Answering
---------+------------------------+-------------------------
-Output  | Ranked list of docs    | Direct answer
-Method  | Keyword matching       | Semantic understanding`
+Types of Information Retrieval:
+1. Text Retrieval: Documents based on textual content
+2. Multimedia Retrieval: Non-textual content (images, videos, audio)
+3. Web Search Retrieval: Web pages from the internet
+4. Database Retrieval: Structured information from databases (e.g., SQL queries)`
+            },
+            {
+                heading: "Variants of IR Systems",
+                body: `1. Monolingual Information Retrieval:
+   • Query language and document language are the same
+   • Simplest form: straightforward keyword matching within one language
+   • Challenges: Limited to single language; requires exact phrasing knowledge
+
+2. Bilingual / Cross-Lingual Information Retrieval (CLIR):
+   • Retrieve documents in a different language from the query
+   • Translation approaches: Machine translation (e.g., Google Translate),
+     Bilingual dictionary or corpus-based approach using parallel corpora
+
+   Example: Query: English ("global warming effects") → Documents: Spanish
+   Process: English query translated to Spanish → Search Spanish collection → Results retrieved
+
+   CLIR Approaches:
+   Approach 1: Query Translation
+     1. Translate English query into Chinese query
+     2. Search Chinese document collection
+     3. Translate retrieved results back into English
+   Approach 2: Document Translation
+     1. Translate entire document collection into English
+     2. Search collection in English
+
+   Challenges: Translation accuracy errors, Semantic meaning differences,
+   Cultural context variations, Translation of ambiguous terms
+
+3. Multilingual Information Retrieval (MLIR):
+   • Document collection contains content in multiple languages
+   • Query in one language retrieves documents from various languages
+   • Challenges: Language detection and accurate matching,
+     Cross-language similarity with varying syntax/semantics,
+     Computational complexity with large multilingual corpora`
+            },
+            {
+                heading: "IR Tools and Technologies",
+                body: `Category              | Tools
+----------------------+---------------------------------------
+Search Engines        | Google Search, Elasticsearch, Apache Solr, Amazon CloudSearch
+Ranking Algorithms    | BM25, TF-IDF, Lucene
+Document Indexing     | Apache Lucene, Whoosh
+Distributed IR        | Apache Hadoop, Apache Spark
+Faceted Search        | FacetWP, eZPublish`
             }
         ]
     },
@@ -1657,120 +2103,572 @@ Example: wheel is a meronym of car.`
     // ==================== MODULE 5 ADDITIONS ====================
     {
         rank: 32, module: "M5", freq: 1, title: "Perplexity of Language Models",
-        subtitle: "Definition & usage",
+        subtitle: "Definition, Formula, Interpretation & Comparison",
         color: "#ff4444", badge: "📝 ADDED",
         content: [
             {
-                heading: "Concept of perplexity",
-                body: `Perplexity is a measure of how well a language model predicts a sequence of words. A lower perplexity means the model is less “surprised” by the test sentence and therefore predicts better; a higher perplexity means poorer prediction. Intuitively, perplexity tells us how uncertain the model is while choosing the next word.
+                heading: "What is Perplexity?",
+                body: `Perplexity is a measure of how well a language model predicts a sequence of words.
+A lower perplexity means the model is less "surprised" by the test sentence and
+therefore predicts better; a higher perplexity means poorer prediction.
 
-Perplexity is the exponential of the average negative log-probability assigned by the model to the test sequence. It is commonly used to compare language models; the one with lower perplexity is considered better on that dataset. Example: if Model A has lower perplexity than Model B on the same corpus, Model A predicts the word sequence more effectively.`
+Intuitively, perplexity tells us how uncertain the model is while choosing the next word.
+It represents the weighted average number of choices the model considers at each step.
+
+Formula:
+  PP(W) = P(w₁w₂...wₙ)^(-1/N)
+  PP(W) = 2^H(W)  where H(W) is the cross-entropy
+
+Interpretation:
+• Lower perplexity = better model (less confused about next word)
+• Higher perplexity = worse model (more uncertain)
+• A perplexity of k means the model is as uncertain as choosing uniformly from k words
+
+Example:
+• Model A: Perplexity = 50 on test set → considers ~50 equally likely next words on average
+• Model B: Perplexity = 200 on test set → considers ~200 equally likely next words
+→ Model A is better because it's less confused
+
+Used to compare language models: the one with lower perplexity on the same test
+data is considered the better model for that domain.`
             }
         ]
     },
     {
-        rank: 33, module: "M5", freq: 1, title: "Limitations of HMM in NLP",
-        subtitle: "Markov assumption & dependencies",
+        rank: 33, module: "M5", freq: 1, title: "Limitations of HMM & N-gram Models",
+        subtitle: "Markov Assumption, Sparsity, Context, Smoothing Solutions",
         color: "#ff4444", badge: "📝 ADDED",
         content: [
             {
-                heading: "Limitations",
-                body: `The main weakness of Markov-based models is the Markov assumption: the next state/word depends only on a limited previous context. Because of this, such models cannot capture long-range dependencies or deep semantic structure in language.
+                heading: "Markov Assumption & Its Weakness",
+                body: `The Markov Assumption states that the probability of a word depends only on the
+previous k words (where k = N-1 for an N-gram model).
 
-Other limitations include data sparsity for larger contexts, sensitivity to noisy data, and the trade-off between context size and model complexity. As context length increases, the number of possible combinations grows rapidly, making storage and computation expensive. Compared with newer neural models and Transformers, Markov-style models are much weaker at modeling full-sequence meaning.`
+For Bigram: P(wk | w1...wk-1) ≈ P(wk | wk-1)
+For Trigram: P(wk | w1...wk-1) ≈ P(wk | wk-2, wk-1)
+
+This is a key simplification — but it means the model CANNOT capture long-range
+dependencies or deep semantic structure in language.`
+            },
+            {
+                heading: "All Limitations of N-gram/HMM Models",
+                body: `1. Data Sparsity:
+   As n increases, possible combinations grow exponentially
+   Many valid sequences never appear in training data → zero probabilities
+   Solution: Smoothing techniques (Laplace/Add-1, Good-Turing, Kneser-Ney)
+
+2. Limited Context Awareness:
+   Fixed window size cannot capture long-range dependencies
+   Fails to understand deep semantic meaning or sentence structure
+   Solution: Neural language models, attention mechanisms
+
+3. Data Quality Dependency:
+   Sensitive to spelling errors, slang, abbreviations, inconsistent formatting
+   Domain mismatch between training and application data
+   Solution: Preprocessing (tokenization, normalization, stemming), domain adaptation
+
+4. Language Evolution:
+   Static models become outdated as language changes
+   New words, phrases, and meanings emerge constantly
+   Solution: Regular model updates, temporal modeling
+
+5. Model Complexity Trade-off:
+   Higher n = better context but exponential growth in parameters
+   Memory and computational costs increase significantly
+   Solution: Optimal n selection (typically 2-4 for most applications)
+
+6. No Semantic Understanding:
+   Treats words as discrete symbols; cannot understand meaning or similarity
+
+7. Curse of Dimensionality:
+   Vocabulary size V means V^n possible n-grams — exponential growth
+
+8. Out-of-Vocabulary (OOV) Words:
+   Unseen words in training data cause zero-probability issues`
             }
         ]
     },
     {
         rank: 34, module: "M5", freq: 2, title: "Fine-tuning in Pre-trained Models",
-        subtitle: "Concept and process",
+        subtitle: "4 Strategies, PEFT (LoRA, Adapters), Best Practices, NLP Tasks",
         color: "#ff4444", badge: "📝 ADDED",
         content: [
             {
-                heading: "What is fine-tuning?",
-                body: `Fine-tuning is the process of taking a model that has already been pre-trained on a very large corpus and then training it further on a smaller, task-specific dataset. This allows the model to adapt its general language knowledge to a specific task such as text classification, NER, or question answering.
+                heading: "What is Fine-tuning?",
+                body: `Fine-tuning is the process of taking a model that has already been pre-trained
+on a very large corpus and then training it further on a smaller, task-specific dataset.
 
-In practice, a task-specific layer is added on top of the pre-trained model, and either all layers or only some upper layers are updated. Sometimes lower layers are frozen to preserve general knowledge while upper layers learn the target task.`
+The Paradigm Shift:
+Old approach: Train from scratch for each task (requires massive labeled data)
+New approach:
+  1. Pre-training: Learn general language representations from unlabeled text
+  2. Fine-tuning: Adapt to specific tasks with small labeled datasets
+
+Why it Works:
+Pre-trained models capture universal language features (syntax, semantics, world knowledge).
+Fine-tuning requires only task-specific adjustments to output layers or internal representations.`
+            },
+            {
+                heading: "Fine-Tuning Strategies",
+                body: `1. Full Fine-Tuning:
+   Update all model parameters on task-specific data
+   Pros: Best performance for target task
+   Cons: Computationally expensive; risk of catastrophic forgetting
+
+2. Feature Extraction (Frozen):
+   Keep pre-trained weights frozen, add new classification layers on top
+   Train only new layers
+   Pros: Fast, prevents overfitting on small datasets
+   Cons: May underfit complex tasks
+
+3. Layer-wise Fine-Tuning:
+   Gradually unfreeze layers from top to bottom
+   Lower layers capture general features (syntax); upper layers capture task-specific features
+
+4. Discriminative Fine-Tuning:
+   Use different learning rates for different layers
+   Lower layers: smaller learning rates (preserve general knowledge)
+   Upper layers: larger learning rates (adapt to task)`
+            },
+            {
+                heading: "Parameter-Efficient Fine-Tuning (PEFT)",
+                body: `For large models (billions of parameters), full fine-tuning is impractical:
+
+Adapter Layers:
+  Insert small trainable layers between frozen pre-trained layers
+  Only adapter parameters (2-4% of total) are updated
+
+LoRA (Low-Rank Adaptation):
+  Inject trainable low-rank matrices into attention and feed-forward layers
+  Reduces trainable parameters by 10,000x while maintaining performance
+  Formula: W = W0 + ΔW = W0 + BA (where B and A are low-rank matrices)
+
+Prompt Tuning / Prefix Tuning:
+  Add trainable tokens to input prompts rather than changing model weights
+  Model learns to "read" these soft prompts to perform tasks`
+            },
+            {
+                heading: "Best Practices & Common NLP Tasks",
+                body: `Learning Rate Selection:
+  Pre-trained layers: 10⁻⁵ to 10⁻⁴ (small, preserve knowledge)
+  New classification layers: 10⁻³ to 10⁻² (larger, learn task)
+  Use learning rate warm-up and linear decay schedules
+
+Regularization:
+  Dropout: Prevent overfitting in classification layers
+  Weight Decay: L2 regularization on fine-tuned parameters
+  Early Stopping: Monitor validation loss
+  Gradient Clipping: Prevent exploding gradients
+
+Data Considerations:
+  Small datasets (<1,000): Use frozen feature extraction or heavy regularization
+  Medium (1,000-10,000): Layer-wise fine-tuning with discriminative learning rates
+  Large (>10,000): Full fine-tuning possible
+
+Common NLP Tasks & Fine-Tuning:
+Task              | Modification              | Example
+------------------+---------------------------+--------------------------
+Classification    | Add [CLS] token + Softmax | Sentiment, spam detection
+Sequence Labeling | Token-level Softmax       | NER, POS tagging
+Question Answering| Span prediction heads     | SQuAD dataset
+Sentence Similarity| Siamese architecture     | Semantic textual similarity
+Text Generation   | Autoregressive decoding   | Summarization, translation`
             }
         ]
     },
     {
         rank: 35, module: "M5", freq: 1, title: "Pre-training Techniques: MLM and NSP",
-        subtitle: "Masked Language Modeling & Next Sentence Prediction",
+        subtitle: "Detailed Process, Strengths, Limitations, Comparison",
         color: "#ff4444", badge: "📝 ADDED",
         content: [
             {
-                heading: "MLM and NSP",
-                body: `In Masked Language Modeling (MLM), some input tokens are randomly masked, and the model is trained to predict the missing words using both left and right context. This helps the model learn rich bidirectional language understanding.
+                heading: "Masked Language Modeling (MLM)",
+                body: `Objective: Predict randomly masked tokens using full bidirectional context.
 
-In Next Sentence Prediction (NSP), the model is given two sentences and must predict whether the second logically follows the first. This helps the model learn sentence-level relationships and discourse coherence. Both MLM and NSP are core pre-training tasks associated with BERT-style models.`
+Process:
+• 15% of input tokens are randomly masked
+• Model is trained to predict these masked tokens using context from BOTH directions
+• Example: "The cat sat on the [MASK]" → model predicts "mat"
+• This allows bidirectional context learning (unlike GPT which is left-to-right only)
+
+Granularity: Word-level — produces contextual embeddings
+Contextual Modeling: Bidirectional (sees left and right context)
+Strength: Deep token-level understanding of language
+Efficiency: High computational cost per token
+Limitation: Ignores sentence-level relationships; creates mismatch between
+pre-training and fine-tuning (no [MASK] tokens at inference)`
+            },
+            {
+                heading: "Next Sentence Prediction (NSP)",
+                body: `Objective: Predict whether sentence B logically follows sentence A.
+
+Process:
+• Model is given two sentences and must predict if B follows A
+• Helps model understand sentence-level relationships
+• Useful for tasks like QA, text entailment, summarization
+
+Granularity: Sentence-level — captures logical/coherence relationships
+Contextual Modeling: Focused on sentence pairs
+Strength: Multi-sentence coherence; useful for summarization and QA
+Efficiency: Lower computational complexity than MLM
+Limitation: Simplistic objective — may not generalize to all downstream tasks;
+later research (RoBERTa) showed dropping NSP doesn't hurt performance`
+            },
+            {
+                heading: "MLM vs NSP Comparison",
+                body: `Aspect              | MLM                          | NSP
+--------------------+------------------------------+---------------------------
+Objective           | Predict masked tokens        | Predict sentence continuity
+Granularity         | Word-level (embeddings)      | Sentence-level (relations)
+Contextual Modeling | Bidirectional                | Focused on sentence pairs
+Efficiency          | High cost per token          | Lower computational cost
+Strengths           | Deep token-level understanding| Multi-sentence coherence
+Limitations         | Ignores sentence relations   | Limited generalizability
+
+Both MLM and NSP are core pre-training tasks for BERT-style models.
+RoBERTa later showed that removing NSP and using only MLM with dynamic masking
+produces better results on most benchmarks.`
             }
         ]
     },
     {
         rank: 36, module: "M5", freq: 0, title: "RNNs, LSTMs & GRUs",
-        subtitle: "Recurrent models and gating mechanisms",
+        subtitle: "Architecture, Gates, Equations, Training, Comparison",
         color: "#ff4444", badge: "📝 ADDED",
         content: [
             {
-                heading: "RNNs for language modeling & Limitations",
-                body: `An RNN processes text sequentially, one token at a time, while maintaining a hidden state that carries information from previous tokens. This makes it suitable for language modeling, because the prediction of the next word can depend on earlier words in the sequence.
+                heading: "RNNs for Language Modeling",
+                body: `RNNs are a type of neural network designed specifically for sequential data,
+making them well-suited for language modeling. They can capture patterns and
+dependencies over time, essential for understanding the sequential nature of language.
 
-Its limitations are:
-- vanishing gradient problem
-- exploding gradient problem
-- difficulty in learning long-range dependencies
-- slow training, because sequence processing is not easily parallelized.`
+How RNNs Work:
+RNNs process sequences by maintaining a hidden state that carries information
+from previous steps. This hidden state is updated with each new input, allowing
+the model to 'remember' previous information.
+
+Key Equations:
+  Hidden state: h(t) = f(Wh · h(t-1) + We · ct)
+  Output distribution: ŷ = softmax(W2 · h(t))
+  ct = word embeddings (c1, c2, c3, c4...)
+  h(0) is the initial hidden state
+
+For next word prediction: the RNN processes each word, uses the hidden state to
+carry forward context, and computes probability distribution over the vocabulary
+via softmax.
+
+Training — Backpropagation Through Time (BPTT):
+• RNNs are trained using BPTT, which unrolls the network through time
+• Gradients are propagated backward through each time step
+• Loss function: typically cross-entropy loss on predicted vs actual next word
+
+Limitations of Standard RNNs:
+1. Vanishing Gradient Problem: Gradients shrink exponentially as they propagate
+   back through many time steps — model fails to learn long-range dependencies
+2. Exploding Gradient Problem: Gradients can grow uncontrollably (solved with gradient clipping)
+3. Sequential Processing: Cannot be parallelized during training — slow for long sequences
+4. Short-Term Memory: Struggles to retain information over long distances in text`
             },
             {
-                heading: "LSTM and GRU",
-                body: `LSTM (Long Short-Term Memory) and GRU (Gated Recurrent Unit) are improved versions of RNNs designed to handle long-term dependencies better. They introduce gating mechanisms that control what information should be remembered, updated, or forgotten.
+                heading: "LSTM (Long Short-Term Memory)",
+                body: `LSTM is a specialized RNN architecture designed to solve the vanishing gradient
+problem. It introduces a cell state and gating mechanisms to selectively remember
+or forget information over long sequences.
 
-An LSTM uses a cell state with input, forget, and output gates, while a GRU is a simpler version with update and reset gates. These structures reduce the vanishing-gradient problem and help the model preserve important information over longer sequences.`
+LSTM Architecture — Three Gates:
+
+a) Forget Gate:
+   Decides what information to discard from the cell state.
+   Formula: ft = sigmoid(Wf · [ht-1, xt] + bf)
+   Output: values between 0 (forget completely) and 1 (keep completely)
+
+b) Input Gate:
+   Decides what new information to store in the cell state.
+   Input gate: it = sigmoid(Wi · [ht-1, xt] + bi)
+   Candidate values: C̃t = tanh(WC · [ht-1, xt] + bC)
+   Cell state update: Ct = ft · Ct-1 + it · C̃t
+
+c) Output Gate:
+   Decides what part of the cell state to output as hidden state.
+   Output gate: ot = sigmoid(Wo · [ht-1, xt] + bo)
+   Hidden state: ht = ot · tanh(Ct)
+
+Advantages of LSTM:
+• Solves vanishing gradient: Cell state allows gradients to flow unchanged over many time steps
+• Long-range dependencies: Can remember information from hundreds of steps earlier
+• Gating mechanism: Fine-grained control over what to remember and forget
+• Widely used in: Machine translation, speech recognition, sentiment analysis, text generation`
+            },
+            {
+                heading: "GRU (Gated Recurrent Unit)",
+                body: `GRU is a simplified variant of LSTM with fewer parameters. It combines the forget
+and input gates into a single update gate and merges the cell state and hidden state.
+
+GRU Gates:
+  Reset Gate (rt): Controls how much of the previous hidden state to use when
+    computing candidate hidden state
+  Update Gate (zt): Controls how much of the previous hidden state to keep vs
+    update with new candidate
+
+Equations:
+  Candidate hidden state: h̃t = tanh(W · [rt · ht-1, xt])
+  Final hidden state: ht = (1 - zt) · ht-1 + zt · h̃t
+
+GRU for Language Modeling — Key Steps:
+  1. Input: Model takes a sequence of words, one at a time
+  2. Embedding: Each word is converted into a dense vector representation
+  3. GRU Layer: Processes input sequence, capturing long-term dependencies
+  4. Output Layer: Final hidden state fed into output layer for probability distribution over vocabulary
+  5. Training: Model minimizes cross-entropy loss between predicted and actual next words
+
+Advantages of GRU:
+• Fewer parameters than LSTM — faster to train
+• Effective at capturing long-range dependencies
+• Comparable performance to LSTM on many tasks
+• Less prone to overfitting on smaller datasets`
+            },
+            {
+                heading: "LSTM vs GRU Comparison",
+                body: `Feature        | LSTM                        | GRU
+---------------+-----------------------------+---------------------------
+Gates          | 3 (forget, input, output)   | 2 (reset, update)
+Cell State     | Separate cell + hidden state| Single hidden state
+Parameters     | More parameters             | Fewer parameters
+Training Speed | Slower                      | Faster
+Performance    | Better for very long seq    | Comparable on most tasks
+Use Case       | Complex NLP tasks           | Resource-constrained settings`
             }
         ]
     },
     {
         rank: 37, module: "M5", freq: 0, title: "Transformer Architecture & Attention",
-        subtitle: "Self-attention and comparison with RNNs",
+        subtitle: "Self-Attention, Q/K/V, Multi-Head, Encoder-Decoder, Positional Encoding",
         color: "#ff4444", badge: "📝 ADDED",
         content: [
             {
-                heading: "Attention Mechanism",
-                body: `The Attention mechanism, especially self-attention, allows each word in a sequence to look at every other word and determine which ones are most relevant. This helps the model capture dependencies regardless of distance.
+                heading: "From RNNs to Transformers",
+                body: `Limitations of RNNs/LSTMs/GRUs that Transformers solve:
+• Sequential processing: Cannot parallelize training (slow)
+• Long-range dependencies: Gradient vanishing/exploding over long sequences
+• Fixed context window: Limited memory of distant words
 
-In Transformers, attention is computed using Query (Q), Key (K), and Value (V) vectors. The model calculates attention scores and uses them to produce context-aware representations. Multi-head attention allows the model to learn several types of relationships at the same time.`
+Transformers are a neural network architecture based entirely on attention
+mechanisms, introduced in the paper "Attention Is All You Need" (Vaswani et al., 2017).
+They have become the dominant architecture in NLP, replacing RNNs in most tasks.
+
+Key Innovation: Access all positions in the input sequence simultaneously and
+weigh their importance dynamically.
+Self-Attention: The model learns which words in a sentence are related to each
+other, regardless of distance.`
             },
             {
-                heading: "Transformer vs RNN-based models",
-                body: `The Transformer architecture is based on self-attention instead of recurrence. Its major components include input embeddings, positional encoding, multi-head attention, feed-forward neural networks, layer normalization, and residual connections.
+                heading: "Core Components of a Transformer",
+                body: `1. Input Embeddings:
+   Input text is tokenized into words or sub-words, each embedded into a continuous
+   vector representation. This step captures semantic and syntactic information.
 
-The main difference from RNNs is that Transformers process tokens in parallel, whereas RNNs process them sequentially. Transformers capture long-range dependencies more effectively through attention, while RNNs struggle with distant context and slower training.`
+2. Positional Encoding:
+   Since transformers process all tokens in parallel (no sequential order), positional
+   encodings are added to input embeddings to encode the position/order of tokens
+   in the sequence. Uses sine/cosine functions or learned embeddings.
+
+3. Encoder:
+   Analyzes the input text and creates hidden states representing context and meaning.
+   Each encoder layer has two sub-components:
+   • Self-Attention Mechanism: Weighs the importance of different tokens relative to each other
+   • Feed-Forward Neural Network: Applies non-linear transformations to add abstraction
+
+4. Decoder (in encoder-decoder transformers):
+   The decoder generates output sequences. It has:
+   • Masked Multi-Head Attention: Prevents attending to future tokens (used during training)
+   • Cross-Attention: Attends to encoder output to incorporate source context
+   • Feed-Forward Network: Same as encoder
+
+5. Layer Normalization and Residual Connections:
+   Residual connections (Add & Norm) help stabilize training by reducing
+   vanishing/exploding gradient problems and improving convergence.`
+            },
+            {
+                heading: "Self-Attention Mechanism (Detailed)",
+                body: `Self-attention enables the model to evaluate each word's significance within the
+full input sequence. It computes relationships between all token pairs simultaneously.
+
+Query (Q), Key (K), Value (V) matrices are computed from input embeddings.
+
+Attention Score Formula:
+  Attention(Q, K, V) = softmax(QK^T / √dk) · V
+
+Where dk = dimension of key vectors (used for scaling to prevent vanishing gradients)
+
+Multi-Head Attention:
+Multiple attention heads run in parallel, each learning different types of
+relationships (syntax, semantics, coreference):
+• Each head has its own Q, K, V projections
+• Outputs from all heads are concatenated and linearly projected
+• Allows model to attend to information from different representation subspaces`
+            },
+            {
+                heading: "Architecture Variants & Advantages",
+                body: `Architecture Variants:
+• Encoder-Decoder: Original design for translation (e.g., original Transformer)
+• Encoder-only: For understanding tasks (BERT, RoBERTa)
+• Decoder-only: For generation tasks (GPT series)
+
+Advantages of Transformers:
+1. Parallel Processing: Entire input processed at once — much faster than RNNs
+2. Long-Range Dependencies: Self-attention connects all token pairs directly,
+   regardless of distance
+3. State-of-the-Art Performance: Best results on machine translation,
+   summarization, QA, etc.
+4. Scalability: Performance improves consistently with more data and parameters
+
+Transformer vs RNN Comparison:
+Aspect           | N-grams / RNN         | Transformers / BERT
+-----------------+-----------------------+--------------------------
+Context Window   | Fixed (N-1 words)     | Full sequence (attention)
+Long-range Deps  | Poor                  | Excellent
+Training Data    | Requires smoothing    | Handles unseen combinations via embeddings
+Parallelization  | N/A / Sequential      | Highly parallelizable
+Pre-training     | Statistical counts    | Deep representation learning
+Fine-tuning      | Not applicable        | Essential for task adaptation`
             }
         ]
     },
     {
         rank: 38, module: "M5", freq: 0, title: "BERT, Transfer Learning & LLMs",
-        subtitle: "Pre-trained models, fine-tuning and GPT",
+        subtitle: "BERT Architecture, MLM/NSP, GPT, RoBERTa, Fine-tuning Strategies",
         color: "#ff4444", badge: "📝 ADDED",
         content: [
             {
-                heading: "BERT Architecture & Applications",
-                body: `BERT (Bidirectional Encoder Representations from Transformers) is a pre-trained language model developed by Google. It uses only the encoder stack of the Transformer and learns bidirectional context, meaning it considers both left and right context while understanding a word.
+                heading: "BERT — Architecture & Pre-training",
+                body: `BERT (Bidirectional Encoder Representations from Transformers) is a pre-trained
+transformer-based model developed by Google. It uses only the encoder part of
+the transformer and processes text bidirectionally — considering both left and
+right context simultaneously.
 
-Its pre-training tasks are MLM and NSP. After pre-training, BERT can be fine-tuned for applications such as text classification, named entity recognition, and question answering.`
+Architecture Details:
+• BERT-Base: 12 layers, 768 hidden units, 12 attention heads, 110M parameters
+• BERT-Large: 24 layers, 1024 hidden units, 16 attention heads, 340M parameters
+
+Pre-training Tasks:
+1. Masked Language Modeling (MLM):
+   • Randomly masks 15% of words in input
+   • Model predicts original words based on context
+   • Example: "The cat sat on the [MASK]" → predicts "mat"
+   • Allows bidirectional context learning
+   • Limitation: Creates mismatch between pre-training and fine-tuning (no [MASK] tokens at inference)
+
+2. Next Sentence Prediction (NSP):
+   • Given two sentences (A, B), predicts if B actually follows A
+   • Helps model understand sentence-level relationships
+   • Useful for tasks like QA, text entailment, summarization
+   • Limitation: Found to add noise in some cases; RoBERTa removes this task
+
+BERT Fine-tuning Applications:
+• Text Classification: Use [CLS] token representation
+• Named Entity Recognition (NER): Token-level predictions
+• Question Answering: Predict start/end spans of answers
+
+Limitations of BERT:
+• Processes text in chunks due to memory limitations — lacks context for very long texts
+• No built-in memory mechanism to retain information across chunks
+• Computationally expensive to pre-train from scratch
+• Maximum input length of 512 tokens`
+            },
+            {
+                heading: "GPT (Generative Pre-trained Transformer)",
+                body: `GPT is a transformer-based language model developed by OpenAI. Unlike BERT
+which uses the encoder, GPT uses only the decoder stack and is trained
+autoregressively — predicting the next token given all previous tokens.
+
+GPT Architecture Components:
+• Input Embedding: Raw text tokenized; each token converted to dense vector via embedding layer
+• Positional Encoding: Added to embeddings to preserve token order
+• Transformer Blocks (repeated N times):
+  - Self-Attention System: Evaluates each word's significance in full sequence context
+  - Layer Normalization and Residual Connections: Stabilize training
+  - Feedforward Neural Networks: Process attention output; add abstraction
+• Output: Linear layer + Softmax to produce probability distribution over vocabulary
+
+GPT vs BERT: Key Differences:
+• GPT uses Decoder (unidirectional — left to right), BERT uses Encoder (bidirectional)
+• GPT is generative (produces text), BERT is discriminative (understands/classifies text)
+• GPT uses causal (masked) self-attention; cannot see future tokens during training
+• GPT fine-tunes with same architecture; BERT adds task-specific head`
+            },
+            {
+                heading: "RoBERTa (Robustly Optimized BERT)",
+                body: `RoBERTa is a variant of BERT developed by Facebook AI Research. It uses the
+same transformer encoder architecture but with key training improvements.
+
+Key Differences from BERT:
+1. Dynamic Masking: RoBERTa changes the masking pattern every epoch (BERT uses
+   fixed masking) — encourages better generalization
+2. No NSP Task: RoBERTa drops Next Sentence Prediction, finding it adds noise
+   rather than helping
+3. More Training Data: Trained on 160GB data vs BERT's 16GB
+4. Larger Batch Size: Uses larger batch sizes for more robust training
+5. More Training Steps: Trained for more iterations
+
+BERT vs RoBERTa Comparison:
+Feature               | BERT            | RoBERTa
+----------------------+-----------------+---------------------
+Masking Strategy      | Static (fixed)  | Dynamic (per epoch)
+Next Sentence Pred    | Included        | Omitted
+Training Data         | 16 GB           | 160 GB
+Batch Size            | Smaller         | Larger
+Training Steps        | Fewer           | More
+Performance           | Strong          | State-of-the-art
+
+Other BERT Variants:
+• ALBERT: Parameter reduction techniques for memory efficiency
+• DistilBERT: Smaller, faster version retaining 97% of performance
+
+When to Use:
+• Use BERT: Well-established baseline, large training data, fine-tuning for specific task
+• Use RoBERTa: Better performance needed, limited training data, faster inference`
             },
             {
                 heading: "Transfer Learning in NLP",
-                body: `Transfer learning in NLP means reusing knowledge learned by a model on a large general corpus and applying it to a different but related task. Instead of training from scratch, we start with a powerful pre-trained model and adapt it.
+                body: `Transfer learning is a ML technique where a model trained on one task is
+re-used as a starting point for a related task. In NLP, this involves
+leveraging knowledge from a large dataset to improve performance on smaller,
+specific tasks.
 
-For downstream tasks, a task-specific output layer is added and the model is trained on labeled data. Depending on the requirement, either the entire model is updated or only selected layers are fine-tuned. This reduces training cost and improves performance, especially when labeled data is limited.`
+The Paradigm Shift:
+Old approach: Train models from scratch for each task (requires massive labeled data)
+New approach:
+  1. Pre-training: Learn general language representations from unlabeled text (self-supervised)
+  2. Fine-tuning: Adapt to specific tasks with small labeled datasets
+
+Why it Works:
+Pre-trained models capture universal language features (syntax, semantics, world knowledge).
+Fine-tuning requires only task-specific adjustments to output layers or internal representations.
+
+Key Techniques:
+1. Pre-trained Language Models (PLMs): Models like BERT, GPT, RoBERTa are pre-trained
+   on massive text corpora and then fine-tuned for specific downstream tasks.
+   Benefits: reduced training time, better performance with less labeled data.
+
+2. Feature Extraction: Pre-trained model weights are frozen; outputs (embeddings)
+   are used as features for other models. Useful when training data is very limited.
+
+3. Domain Adaptation: Fine-tune a general-purpose model on domain-specific text
+   (e.g., medical, legal) before task-specific fine-tuning. Bridges the gap between
+   general and specialized language.`
             },
             {
-                heading: "Large Language Models (LLMs) & GPT",
-                body: `Large Language Models (LLMs) are very large neural language models trained on massive text corpora to understand and generate human language. They can perform many NLP tasks such as text generation, summarization, QA, and translation.
-
-GPT (Generative Pre-trained Transformer) uses the decoder-only Transformer architecture. It is trained autoregressively, meaning it predicts the next token based on previous tokens only. Its architecture includes token embeddings, positional encoding, masked self-attention, feed-forward layers, normalization, and residual connections.`
+                heading: "Quick Reference — Model Comparison",
+                body: `Model   | Type       | Direction      | Key Feature       | Best For
+--------+------------+----------------+-------------------+-------------------
+N-gram  | Statistical| Forward only   | Count-based       | Simple text analysis
+RNN     | Neural     | Forward only   | Hidden state      | Short sequences
+GRU     | Neural     | Forward only   | 2 gates, simpler  | Efficient seq modeling
+LSTM    | Neural     | Forward only   | Cell state+3 gates| Long sequences
+Transf. | Bidirect.  | Self-attention | Parallel           | All NLP tasks
+BERT    | Transf.Enc | Bidirectional  | MLM + NSP         | Understanding tasks
+RoBERTa | Transf.Enc | Bidirectional  | Optimized BERT    | Better classification
+GPT     | Transf.Dec | Left-to-right  | Autoregressive    | Text generation`
             }
         ]
     },
@@ -1888,6 +2786,118 @@ NER is important in information extraction, question answering, machine translat
   - Intrinsic: detects style inconsistency within the same document
   - Extrinsic: compares the document against external sources
 - Cross-lingual plagiarism detection: detects copied content that has been translated from one language to another.`
+            }
+        ]
+    },
+    {
+        rank: 44, module: "M6", freq: 3, title: "Text Categorization (Text Classification)",
+        subtitle: "Types, Pipeline, Feature Extraction, 3 Approaches, Applications",
+        color: "#66bb6a", badge: "🏷️ CLASSIFICATION",
+        content: [
+            {
+                heading: "Definition",
+                body: `Text Categorization (Text Classification) is the process of categorizing text into
+predefined categories or labels.
+
+• Analyzes content to assign classes: spam vs. non-spam, sentiment (positive/negative/neutral)
+• Applications: Email filtering, sentiment analysis, topic categorization, language identification
+
+Types of Text Classification:
+Type               | Description                             | Example
+-------------------+-----------------------------------------+--------------------------------
+Binary             | Two classes only                        | Sentiment: Positive vs Negative
+Multi-class        | More than two categories, one per text  | News: Sports, Politics, Entertainment, Technology
+Multi-label        | Multiple classes simultaneously         | Academic paper: AI, Machine Learning, Data Science`
+            },
+            {
+                heading: "Text Classification Pipeline",
+                body: `1. DATA COLLECTION
+   Gather data from various sources
+
+2. DATA PREPROCESSING
+   • Lowercasing: "Text" and "text" treated same
+   • Removing Noise: Eliminate special chars, punctuation, numbers
+   • Tokenization: Split into words/phrases
+     "The cats are running" → ["The", "cats", "are", "running"]
+   • Stopword Removal: Remove common words ("the", "and", "is")
+   • Stemming/Lemmatization: Reduce to base form
+     "running" → "run", "cats" → "cat"
+     Example: "The cats are running quickly" → ["cat", "run", "quick"]
+
+3. TEXT REPRESENTATION (Feature Extraction)
+   • Bag of Words (BoW): Sparse vector of word frequencies
+   • TF-IDF: Weigh words by importance across dataset (important words get higher weight)
+   • Word Embeddings: Dense vectors (Word2Vec, GloVe, FastText) — similar meanings = similar vectors
+   • BERT/Transformer: Contextual embeddings — context-aware representations
+
+4. MODEL SELECTION
+   • Naive Bayes, SVM, Logistic Regression, Random Forest
+   • Deep Learning: RNN, LSTM, CNN, Transformers
+
+5. TRAINING
+   • Split data, Optimize, Evaluate on validation, Tune hyperparams
+
+6. MODEL EVALUATION
+   • Accuracy, Precision, Recall, F1-Score
+   • Confusion Matrix, ROC/AUC
+
+7. PREDICTION
+   Classify new unseen text`
+            },
+            {
+                heading: "Three Approaches to Text Classification",
+                body: `Approach 1: Machine Learning with NLP Features
+• Preprocessing: Tokenize, clean, remove stopwords, lowercase
+• Feature Extraction: TF, TF-IDF, n-grams, custom features (text length, word length, exclamation points)
+• Model: SVM or Logistic Regression
+• Training: On labeled data with extracted features
+• Prediction: Category based on features
+
+Approach 2: Deep Learning
+• Preprocessing: Tokenize, pad sequences for uniform length
+• Text Representation: Word embeddings (Word2Vec, GloVe, random init)
+• Model Architecture: RNN, LSTM, or 1D CNN
+• Training: Learn word dependencies over multiple epochs
+• Prediction: Based on learned word patterns
+
+Approach 3: Fine-tuning LLM
+• Preprocessing: Use pre-trained BERT/GPT tokenizer
+• Fine-tuning: Fine-tune on small labeled dataset;
+  Freeze lower layers, fine-tune last few layers
+• Training: Few epochs on specific dataset
+• Prediction: Based on learned context and meaning
+• Advantage: Captures deep semantic patterns, minimal data needed`
+            },
+            {
+                heading: "Example: Spam Detection Pipeline",
+                body: `1. Data Collection: Gather emails labeled "spam" and "not spam"
+2. Data Preprocessing: Tokenize, clean, remove special characters and stopwords
+3. Text Representation: Use TF-IDF to convert to numerical vectors
+4. Model Selection: Choose Naive Bayes classifier
+5. Training: Train on labeled emails
+6. Evaluation: Measure accuracy, precision, recall, F1-score on test set
+7. Prediction: Classify new emails
+
+Custom Features for News Classification:
+Feature               | Description
+----------------------+--------------------------------------------
+Word Count            | Total words in article
+Headline Length       | Words/characters in headline
+Named Entity Count    | People, organizations, locations mentioned
+Sentiment Score       | Polarity (positive/neutral/negative)
+Category Keywords     | Presence of category-specific terms
+POS Tag Count         | Specific parts of speech counts
+Topic Distribution    | LDA topic probabilities
+Quote Count           | Direct quotes (indicates interviews)`
+            },
+            {
+                heading: "Applications of Text Classification",
+                body: `Application              | Description
+-------------------------+-------------------------------------------
+Spam Classification      | Sort emails into spam/non-spam
+News/Blog Categorization | Classify articles into topics
+Customer Support         | Route requests by topic to appropriate department
+Hate Speech Detection    | Flag inappropriate content for review`
             }
         ]
     }
